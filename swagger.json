@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Gemini Playground",
+    "version": "1.0.0",
+    "description": "API documentation GeminiAI playground using data jds-mart"
+  },
+  "tags": [
+    {
+      "name": "ChatAI",
+      "description": "Endpoints to chatting with assistant"
+    },
+    {
+      "name": "Product",
+      "description": "Endpoints to CRUD Product JDS Mart"
+    }
+  ],
+  "paths": {
+    "/api/v1/query": {
+      "post": {
+        "tags": ["ChatAI"],
+        "requestBody": {
+          "description": "Product details to add desc",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "example": "rekomendasi produk yang cocok untuk keluarga"
+                  }
+                },
+                "required": ["query"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "object",
+                      "properties": {
+                        "parts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string",
+                                "example": "Halo, dengan senang hati saya membantu Anda."
+                              }
+                            }
+                          }
+                        },
+                        "role": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

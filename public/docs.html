@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belajar RAG</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.1/swagger-ui.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.1/swagger-ui-bundle.min.js"></script>
+  <script>
+    window.onload = () => {
+      SwaggerUIBundle({
+        url: '/swagger.json', // File JSON untuk deskripsi API Anda
+        dom_id: '#swagger-ui',
+      });
+    };
+  </script>
+</body>
+</html>
