@@ -23,6 +23,8 @@ Sebelum menjalankan proyek ini, pastikan Anda telah menginstal:
 ```bash
   MONGO_URI=<URL_MONGODB_ANDA>
   GEMINI_API_KEY=<TOKEN_GEMINI_ANDA>
+  GEMINI_MODEL=
+  PROMPT=
   PORT=3000
 ```
 
