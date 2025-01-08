@@ -20,7 +20,6 @@
       "post": {
         "tags": ["ChatAI"],
         "requestBody": {
-          "description": "Product details to add desc",
           "required": true,
           "content": {
             "application/json": {
