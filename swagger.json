@@ -81,7 +81,7 @@
         }
       }
     },
-    "/product": {
+    "/products": {
       "get": {
         "tags": ["Product"],
         "summary": "Get Products",
@@ -119,6 +119,20 @@
             "name": "owner",
             "in": "query",
             "description": "Username pemilik produk.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Halaman ke berapa list produk.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Jumlah yang ditampilkan list produk.",
             "required": false,
             "type": "string"
           }

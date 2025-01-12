@@ -4,7 +4,21 @@ const MasterModel = require('../models/masterModel');
 const ProductController = {
     async getAll(req, res) {
         try {
-            const products = await ProductModel.getAll();
+            const pagination = {
+                page: req.query.page || 1,
+                limit: req.query.limit || 10,
+            };
+            const filters = {
+                name: req.query.search || null,
+                product_category: req.query.category || null,
+                product_tag: req.query.tag || null,
+                location: req.query.location || null,
+                username: req.query.owner || null,
+                start: (pagination.page - 1) * pagination.limit,
+                end: ((pagination.page - 1) * pagination.limit) + pagination.limit - 1,
+            };
+
+            const products = await ProductModel.getAll(filters);
             res.success(products);
         } catch (err) {
             res.error({ error: err.message });
