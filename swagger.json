@@ -5,6 +5,14 @@
     "version": "1.0.0",
     "description": "API documentation GeminiAI playground using data jds-mart"
   },
+  "servers": [
+    {
+      "url": "https://belajar-rag.vercel.app/api/v1"
+    },
+    {
+      "url": "http://localhost:3000/api/v1"
+    }
+  ],
   "tags": [
     {
       "name": "ChatAI",
@@ -13,10 +21,14 @@
     {
       "name": "Product",
       "description": "Endpoints to CRUD Product JDS Mart"
+    },
+    {
+      "name": "Master Data",
+      "description": "Endpoints to access master data"
     }
   ],
   "paths": {
-    "/api/v1/query": {
+    "/query": {
       "post": {
         "tags": ["ChatAI"],
         "requestBody": {
@@ -59,6 +71,304 @@
                           }
                         },
                         "role": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "Get Products",
+        "description": "Mengambil daftar produk.",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Keyword untuk pencarian produk.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Kode kategori produk.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Kode tag produk.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Lokasi produk.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "query",
+            "description": "Username pemilik produk.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "example": 4
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "BonCabe Makaroni Krispi"
+                          },
+                          "username": {
+                            "type": "string",
+                            "example": "duhabduh"
+                          },
+                          "image": {
+                            "type": "string",
+                            "example": "https://www.boncabe.com/wp-content/uploads/snack-boncabe-makaroni-krispi-level-10-15-banner-l.webp"
+                          },
+                          "description": {
+                            "type": "string",
+                            "example": ""
+                          },
+                          "location": {
+                            "type": "string",
+                            "example": "Ruang Selatan"
+                          },
+                          "price": {
+                            "type": "integer",
+                            "example": 2500
+                          },
+                          "stock": {
+                            "type": "integer",
+                            "example": 15
+                          },
+                          "product_tags": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "example": "ready-stock"
+                              },
+                              "label": {
+                                "type": "string",
+                                "example": "Ready Stock"
+                              }
+                            }
+                          },
+                          "product_categories": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "example": "makanan"
+                              },
+                              "label": {
+                                "type": "string",
+                                "example": "Makanan"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "Get Product Details",
+        "description": "Mengambil detail produk berdasarkan ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID produk yang ingin diambil.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 4
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "BonCabe Makaroni Krispi"
+                        },
+                        "username": {
+                          "type": "string",
+                          "example": "duhabduh"
+                        },
+                        "image": {
+                          "type": "string",
+                          "example": "https://www.boncabe.com/wp-content/uploads/snack-boncabe-makaroni-krispi-level-10-15-banner-l.webp"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": ""
+                        },
+                        "location": {
+                          "type": "string",
+                          "example": "Ruang Selatan"
+                        },
+                        "price": {
+                          "type": "integer",
+                          "example": 2500
+                        },
+                        "stock": {
+                          "type": "integer",
+                          "example": 15
+                        },
+                        "product_tags": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "example": "ready-stock"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Ready Stock"
+                            }
+                          }
+                        },
+                        "product_categories": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "example": "makanan"
+                            },
+                            "label": {
+                              "type": "string",
+                              "example": "Makanan"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master": {
+      "get": {
+        "tags": ["Master Data"],
+        "summary": "Get Master Data",
+        "description": "Mengambil data master seperti kategori dan tag produk.",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "categories": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "example": "makanan"
+                              },
+                              "label": {
+                                "type": "string",
+                                "example": "Makanan"
+                              }
+                            }
+                          }
+                        },
+                        "tags": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string",
+                                "example": "pre-order"
+                              },
+                              "label": {
+                                "type": "string",
+                                "example": "Pre Order"
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }
