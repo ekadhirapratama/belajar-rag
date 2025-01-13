@@ -1,9 +1,29 @@
 const express = require('express');
-const apiRoutes = require('./routes/apiV1Routes');
-const responseTemplate = require('./middlewares/response');
+const cors = require('cors');
 const path = require('path');
 
+const apiRoutes = require('./routes/apiV1Routes');
+const responseTemplate = require('./middlewares/response');
+
 const app = express();
+
+// CORS
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:8000',
+  'http://localhost:8080',
+];
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 // Middleware
 app.use(express.json());
